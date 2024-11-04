@@ -84,18 +84,17 @@ manager.display_items(items_per_page=10, page=1)
 
 ```mermaid
 classDiagram
-    class CSVLoader {
-        <<Static>>
+    class CSVReader {
         +read_csv(file_path)
     }
 
-    class InventoryManager {
+    class SurvivalInventory {
         -file_path
         -inventory
-        +InventoryManager(file_path)
+        +__init__(file_path)
         +get_item_by_id(item_id)
         +search_items_by_name(search_term)
         +display_items(items_per_page, page, filter_field, filter_value)
     }
 
-    CSVLoader --> InventoryManager : uses
+    CSVReader --> SurvivalInventory : uses
