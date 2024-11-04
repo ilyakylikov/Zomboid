@@ -77,24 +77,26 @@ manager.display_items(filter_field='Name', filter_value='Apple')
 # Display items with pagination (without filtering)
 manager.display_items(items_per_page=10, page=1)
 ```
-
-# Author
-[Kulikov Ilya Nikolaevich]
-
+- Kulikov Ilya Nikolaevich
 
 ```mermaid
 classDiagram
+    %% CSVReader is a utility class used by SurvivalInventory for reading CSV files
+
     class CSVReader {
-        +read_csv(file_path)
+        +read_csv(file_path: str) : list[dict]
     }
 
+    %% SurvivalInventory uses CSVReader as a helper through aggregation
     class SurvivalInventory {
-        -file_path
-        -inventory
-        +__init__(file_path)
-        +get_item_by_id(item_id)
-        +search_items_by_name(search_term)
-        +display_items(items_per_page, page, filter_field, filter_value)
+        +file_path: str
+        +inventory: list[dict]
+        +get_item_by_id(item_id: str) : list[dict]
+        +search_items_by_name(search_term: str) : list[dict]
+        +display_items(items_per_page: int, page: int, filter_field: str, filter_value: str)
     }
 
-    CSVReader --> SurvivalInventory : uses
+    SurvivalInventory o-- CSVReader : "aggregation"
+
+    %% The SurvivalInventory class manages a collection of items read from a CSV file
+
