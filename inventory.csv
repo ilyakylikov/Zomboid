@@ -1,0 +1,6 @@
+ID,Name,Type,Condition,Amount
+1,Bat,Weapon,Bad,1
+2,Apple,Food,Bad,3
+2,Apple,Food,Good,1
+3,Salami,Food,Good,10
+4,Katana,Weapon,Good,1
