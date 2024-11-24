@@ -76,7 +76,20 @@ manager.display_items(filter_field='Name', filter_value='Apple')
 
 # Display items with pagination (without filtering)
 manager.display_items(items_per_page=10, page=1)
+
+# Display all items with condition percentages
+manager.display_items_with_condition_percentage()
 ```
+# New Feature: Interactive CLI
+This project includes an interactive CLI that provides the following functionalities:
+
+-Get item by ID.
+-Search items by name.
+-Calculate percentages of conditions.
+-Display paginated and filtered items.
+-Display all items with their condition percentages.
+-Exit the program.
+
 - Kulikov Ilya Nikolaevich
 
 ```mermaid
@@ -93,10 +106,16 @@ classDiagram
         +inventory: list[dict]
         +get_item_by_id(item_id: str) : list[dict]
         +search_items_by_name(search_term: str) : list[dict]
-        +display_items(items_per_page: int, page: int, filter_field: str, filter_value: str)
+        +calculate_condition_percentage(name_filter: str = None) : dict
+        +display_items(items_per_page: int, page: int, filter_field: str = None, filter_value: str = None)
+        +display_items_with_condition_percentage()
     }
 
-    SurvivalInventory o-- CSVReader : "aggregation"
+    %% Interactive CLI operates on SurvivalInventory to provide user functionality
+    class InteractiveCLI {
+        +interactive_cli()
+    }
 
-    %% The SurvivalInventory class manages a collection of items read from a CSV file
+    SurvivalInventory o-- CSVReader : "uses"
+    InteractiveCLI --> SurvivalInventory : "manages"
 
