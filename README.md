@@ -90,7 +90,7 @@ This project includes an interactive CLI that provides the following functionali
 - Display all items with their condition percentages.
 - Exit the program.
 
-- Kulikov Ilya Nikolaevich
+Kulikov Ilya Nikolaevich
 
 ```mermaid
 classDiagram
