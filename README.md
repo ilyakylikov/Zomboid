@@ -83,12 +83,12 @@ manager.display_items_with_condition_percentage()
 # New Feature: Interactive CLI
 This project includes an interactive CLI that provides the following functionalities:
 
--Get item by ID.
--Search items by name.
--Calculate percentages of conditions.
--Display paginated and filtered items.
--Display all items with their condition percentages.
--Exit the program.
+- Get item by ID.
+- Search items by name.
+- Calculate percentages of conditions.
+- Display paginated and filtered items.
+- Display all items with their condition percentages.
+- Exit the program.
 
 - Kulikov Ilya Nikolaevich
 
