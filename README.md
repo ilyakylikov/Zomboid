@@ -4,8 +4,8 @@ This project implements a class to read data from CSV files containing informati
 # Description
 The programme consists of two main classes:
 
-- *CSVReader*: Responsible for reading data from a CSV file and returning it as a list of dictionaries.
-- *SurvivalInventory*: Manages items, provides functionality for searching items by ID, partial name match, and allows displaying items with pagination and filtering.
+- *Readear*: Responsible for reading data from a CSV file and returning it as a list of dictionaries.
+- *Inventory*: Manages items, provides functionality for searching items by ID, partial name match, and allows displaying items with pagination and filtering.
 
 # Requirements
 
@@ -51,7 +51,6 @@ get_item_by_id(item_id: str) -> List[Dict[str, str]]:
 ```python
 search_items_by_name(search_term: str) -> List[Dict[str, str]]:
 ```
-
 - Searches for items with a partial name match.
 - Returns a list of matching items.
 ```python
@@ -62,46 +61,42 @@ display_items(items_per_page: int = 10, page: int = 1, filter_field: str = None,
 - Outputs a formatted table to the console.
 
 # Examples
-Here's how you can use the SurvivalInventory:
+Here's how you can use the Inventory:
+# Initialize the Inventory with the path to the CSV file
 ```python
-# Initialize the SurvivalInventory with the path to the CSV file
 file_path = 'inventory.csv'
-manager = SurvivalInventory(file_path)
-
+manager = Inventory(file_path)
+```
 # Display items filtered by ID
+```python
 manager.display_items(filter_field='ID', filter_value='2')
-
+```
 # Display items filtered by name
+```python
 manager.display_items(filter_field='Name', filter_value='Apple')
-
-# Display items with pagination (without filtering)
-manager.display_items(items_per_page=10, page=1)
-
-# Display all items with condition percentages
-manager.display_items_with_condition_percentage()
 ```
 # New Feature: Interactive CLI
-This project includes an interactive CLI that provides the following functionalities:
-
-- Get item by ID.
-- Search items by name.
-- Calculate percentages of conditions.
-- Display paginated and filtered items.
-- Display all items with their condition percentages.
-- Exit the program.
-
-Kulikov Ilya Nikolaevich
+How use:
+- Display all Items:
+```python
+python Zomboid.py inventory.csv --display-all
+```
+- Filtered by Name:
+```python
+python Zomboid.py inventory.csv --name "Apple"
+```
+- Kulikov Ilya Nikolaevich
 
 ```mermaid
 classDiagram
-    %% CSVReader is a utility class used by SurvivalInventory for reading CSV files
+    %% Readear is a utility class used by Inventory for reading CSV files
 
-    class CSVReader {
+    class Readear {
         +read_csv(file_path: str) : list[dict]
     }
 
-    %% SurvivalInventory uses CSVReader as a helper through aggregation
-    class SurvivalInventory {
+    %% Inventory uses Readear as a helper through aggregation
+    class Inventory {
         +file_path: str
         +inventory: list[dict]
         +get_item_by_id(item_id: str) : list[dict]
@@ -111,11 +106,11 @@ classDiagram
         +display_items_with_condition_percentage()
     }
 
-    %% Interactive CLI operates on SurvivalInventory to provide user functionality
+    %% Interactive CLI operates on Inventory to provide user functionality
     class InteractiveCLI {
         +interactive_cli()
     }
 
-    SurvivalInventory o-- CSVReader : "uses"
-    InteractiveCLI --> SurvivalInventory : "manages"
+    Inventory o-- Readear : "uses"
+    InteractiveCLI --> Inventory : "manages"
 
