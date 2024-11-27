@@ -39,7 +39,7 @@ read_csv(file_path: str) -> List[Dict[str, str]]:
 ```python
  __init__(file_path: str):
  ```
-- Initializes the SurvivalInventory with the path to the CSV file.
+- Initializes the Inventory with the path to the CSV file.
 - Loads the inventory data into memory.
 
 *Methods*
